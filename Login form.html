@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sethaba's Hardware - Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+      width: 320px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #2d6a4f;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 10px;
+      background: #2d6a4f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1b4332;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="Enter username" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter password" required>
+
+      <button type="submit">Login</button>
+      <p class="error" id="errorMessage"></p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // prevent form submission
+
+      let username = document.getElementById("username").value.trim();
+      let password = document.getElementById("password").value.trim();
+      let errorMessage = document.getElementById("errorMessage");
+
+      // Reset error
+      errorMessage.textContent = "";
+
+      // Validate username
+      if (username === "") {
+        errorMessage.textContent = "Username is required!";
+        return;
+      }
+
+      // Validate password
+      if (password.length <= 6) {
+        errorMessage.textContent = "Password must be longer than 6 characters!";
+        return;
+      }
+
+      if (password.length >= 20) {
+        errorMessage.textContent = "Password must be less than 20 characters!";
+        return;
+      }
+
+      if (password.toLowerCase() === "password") {
+        errorMessage.textContent = "Password cannot be the word 'password'!";
+        return;
+      }
+
+      // If all validations pass
+      alert("Login successful! ✅");
+      // Here you can redirect to another page
+      // window.location.href = "index.html";
+    });
+  </script>
+
+</body>
+</html>
